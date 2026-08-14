@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    static void main(String[] args) {
+        System.out.println("Programa Analizador de Calificaciones");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona tu archivo de calificaciones");
         int resultado = fileChooser.showOpenDialog(null);
 
-        if (resultado!= JFileChooser.APPROVE_OPTION) {
+
+        if (resultado != JFileChooser.APPROVE_OPTION) {
             System.out.println("No se seleccionó ningún archivo.");
             return;
         }
@@ -23,7 +25,7 @@ public class Main {
         try {
             BufferedReader br = new BufferedReader(new FileReader(archivo));
             String linea;
-            while ((linea = br.readLine())!= null) {
+            while ((linea = br.readLine()) != null) {
                 linea = linea.trim();
                 if (linea.isEmpty()) continue;
                 if (linea.toLowerCase().contains("nombre")) continue;
@@ -42,9 +44,16 @@ public class Main {
             for (int i = 0; i < calificaciones.size(); i++) {
                 int cal = calificaciones.get(i);
                 suma += cal;
-                if (cal > max) { max = cal; indexMax = i; }
-                if (cal < min) { min = cal; indexMin = i; }
-                if (cal >= 70) aprobados++; else reprobados++;
+                if (cal > max) {
+                    max = cal;
+                    indexMax = i;
+                }
+                if (cal < min) {
+                    min = cal;
+                    indexMin = i;
+                }
+                if (cal >= 70) aprobados++;
+                else reprobados++;
             }
 
             double promedio = (double) suma / calificaciones.size();
@@ -54,8 +63,8 @@ public class Main {
             System.out.println("Promedio general: " + promedio);
             System.out.println("Mejor estudiante: " + nombres.get(indexMax) + " con " + max);
             System.out.println("Peor estudiante: " + nombres.get(indexMin) + " con " + min);
-            System.out.println("Aprobados (>=70): " + aprobados);
-            System.out.println("Reprobados (<70): " + reprobados);
+            System.out.println("Aprobados calificación igual o superior a (≥70) : " + aprobados);
+            System.out.println("Reprobados calificación menor a 70: " + reprobados);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
