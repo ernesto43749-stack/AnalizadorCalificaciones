@@ -7,11 +7,10 @@ import java.util.List;
 
 public class Main {
     static void main(String[] args) {
-        System.out.println("Programa Analizador de Calificaciones");
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Selecciona tu archivo de calificaciones");
         int resultado = fileChooser.showOpenDialog(null);
-
 
         if (resultado != JFileChooser.APPROVE_OPTION) {
             System.out.println("No se seleccionó ningún archivo.");
